@@ -1,12 +1,16 @@
 import MyForm from "../components/MyForm";
+import '../app.css'
 
 function CreateEmployee() {
-    return (
-      <div>
-      <h1>Create Employee</h1>
+  return (
+    <div>
+      <div className="title">
+        <h1>HRnet</h1>
+
+      </div>
       <MyForm />
     </div>
-    );
-  }
-  
-  export default CreateEmployee;
+  );
+}
+
+export default CreateEmployee;
