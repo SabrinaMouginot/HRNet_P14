@@ -1,7 +1,9 @@
+import './MyForm.css'
+
 function MyForm() {
 
     return (
-        <div >
+        <div className='container'>
             <form>
                 <label>First Name</label>
                 <input />
