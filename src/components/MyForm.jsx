@@ -1,4 +1,6 @@
+import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 // Schéma de validation avec Zod
 const schema = z.object({
@@ -14,50 +16,70 @@ const schema = z.object({
 });
 
 function MyForm() {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm({
+        resolver: zodResolver(schema),
+      });
 
     return (
+          
         <div className='container'>
             <a href="/users">View Current Employees</a>
             <h2>Create Employee</h2>
-            <form>
-                <label>First Name</label>
-                <input />
+            <form onSubmit={handleSubmit()}>
+        <label>First Name</label>
+        <input {...register("firstName")} />
+        {errors.firstName && <span>{errors.firstName.message}</span>}
 
-                <label>Last Name</label>
-                <input />
+        <label>Last Name</label>
+        <input {...register("lastName")} />
+        {errors.lastName && <span>{errors.lastName.message}</span>}
 
-                <label>Date of Birth</label>
-                <input />
+        <label>Date of Birth</label>
+        <input type="date" {...register("dateOfBirth")} />
+        {errors.dateOfBirth && <span>{errors.dateOfBirth.message}</span>}
 
-                <label>Start Date</label>
-                <input />
+        <label>Start Date</label>
+        <input type="date" {...register("startDate")} />
+        {errors.startDate && <span>{errors.startDate.message}</span>}
 
-                <fieldset className="address">
-                    <legend>Address</legend>
+        <fieldset className="address">
+          <legend>Address</legend>
 
-                    <label>Street</label>
-                    <input />
+          <label>Street</label>
+          <input {...register("street")} />
+          {errors.street && <span>{errors.street.message}</span>}
 
-                    <label>City</label>
-                    <input />
+          <label>City</label>
+          <input {...register("city")} />
+          {errors.city && <span>{errors.city.message}</span>}
 
-                    <label>State</label>
-                    <select name="state" id="state"></select>
+          <label>State</label>
+          <select {...register("state")} id="state">
+            {/* options for states */}
+          </select>
+          {errors.state && <span>{errors.state.message}</span>}
 
-                    <label>Zip Code</label>
-                    <input id="zip-code" type="number" />
-                </fieldset>
+          <label>Zip Code</label>
+          <input type="number" {...register("zipCode")} />
+          {errors.zipCode && <span>{errors.zipCode.message}</span>}
+        </fieldset>
 
-                <label>Department</label>
-                <select name="department" id="department">
-                    <option>Sales</option>
-                    <option>Marketing</option>
-                    <option>Engineering</option>
-                    <option>Human Resources</option>
-                    <option>Legal</option>
-                </select>
-            </form>
-            <button >Save</button>
+        <label>Department</label>
+        <select {...register("department")} id="department">
+          <option value="Sales">Sales</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Human Resources">Human Resources</option>
+          <option value="Legal">Legal</option>
+        </select>
+        {errors.department && <span>{errors.department.message}</span>}
+
+        <button type="submit">Save</button>
+      </form>
         </div >
     );
 }
