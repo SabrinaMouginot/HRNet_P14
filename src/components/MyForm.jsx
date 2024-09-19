@@ -24,12 +24,20 @@ function MyForm() {
         resolver: zodResolver(schema), // Pour valider automatiquement les données soumises dans le formulaire
       });
 
+      const onSubmit = (data) => {
+        let employees = JSON.parse(localStorage.getItem('employees')) || [];
+        employees.push(data);
+        localStorage.setItem('employees', JSON.stringify(employees));
+        // Pour rediriger vers la page EmployeeList après sauvegarde
+        window.location.href = "/users";
+      };
+
     return (
           
         <div className='container'>
             <a href="/users">View Current Employees</a>
             <h2>Create Employee</h2>
-            <form onSubmit={handleSubmit()}>
+            <form onSubmit={handleSubmit(onSubmit)}>
         <label>First Name</label>
         <input {...register("firstName")} />
         {errors.firstName && <span>{errors.firstName.message}</span>}
