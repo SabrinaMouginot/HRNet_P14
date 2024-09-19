@@ -24,6 +24,13 @@ function MyForm() {
         resolver: zodResolver(schema), // Pour valider automatiquement les données soumises dans le formulaire
     });
 
+    // Options pour les départements et les états déclarés directement dans le composant
+    const departments = ["Sales", "Marketing", "Engineering", "Human Resources", "Legal"];
+    const states = [
+        "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
+        "Connecticut", "Delaware", "Florida", "Georgia" // etc...
+    ];
+
     const onSubmit = (data) => {
         let employees = JSON.parse(localStorage.getItem('employees')) || [];
         employees.push(data);
@@ -67,7 +74,9 @@ function MyForm() {
 
                     <label>State</label>
                     <select {...register("state")} id="state">
-                        {/* options for states */}
+                        {states.map((state, index) => (
+                            <option key={index} value={state}>{state}</option>
+                        ))}
                     </select>
                     {errors.state && <span>{errors.state.message}</span>}
 
@@ -78,11 +87,9 @@ function MyForm() {
 
                 <label>Department</label>
                 <select {...register("department")} id="department">
-                    <option value="Sales">Sales</option>
-                    <option value="Marketing">Marketing</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Human Resources">Human Resources</option>
-                    <option value="Legal">Legal</option>
+                    {departments.map((department, index) => (
+                        <option key={index} value={department}>{department}</option>
+                    ))}
                 </select>
                 {errors.department && <span>{errors.department.message}</span>}
 
