@@ -17,11 +17,11 @@ const schema = z.object({
 
 function MyForm() {
     const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm({
-        resolver: zodResolver(schema),
+        register, // Pour lier les champs du formulaire à la React Hook Form
+        handleSubmit, // Pour déclencher la validation et l'envoi du formulaire
+        formState: { errors }, // Objet qui contient toutes les erreurs de validation, renvoyées par le schéma Zod si les champs ne respectent pas les contraintes
+      } = useForm({  // pour gérer les formulaires
+        resolver: zodResolver(schema), // Pour valider automatiquement les données soumises dans le formulaire
       });
 
     return (
