@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useDispatch } from 'react-redux';
-import { addEmployee } from '../redux/employeesSlice';
+import { useDispatch } from "react-redux";
+import { addEmployee } from "../redux/employeesSlice";
 
 // Schéma de validation avec Zod
 const schema = z.object({
@@ -20,6 +20,73 @@ const schema = z.object({
 function MyForm() {
     const dispatch = useDispatch(); // Pour dispatcher une action Redux
 
+    // Liste des départements
+    const departments = ["Sales", "Marketing", "Engineering", "Human Resources", "Legal"];
+
+    // Liste des états avec noms et abréviations
+    const states = [
+        { "name": "Alabama", "abbreviation": "AL" },
+        { "name": "Alaska", "abbreviation": "AK" },
+        { "name": "American Samoa", "abbreviation": "AS" },
+        { "name": "Arizona", "abbreviation": "AZ" },
+        { "name": "Arkansas", "abbreviation": "AR" },
+        { "name": "California", "abbreviation": "CA" },
+        { "name": "Colorado", "abbreviation": "CO" },
+        { "name": "Connecticut", "abbreviation": "CT" },
+        { "name": "Delaware", "abbreviation": "DE" },
+        { "name": "District Of Columbia", "abbreviation": "DC" },
+        { "name": "Federated States Of Micronesia", "abbreviation": "FM" },
+        { "name": "Florida", "abbreviation": "FL" },
+        { "name": "Georgia", "abbreviation": "GA" },
+        { "name": "Guam", "abbreviation": "GU" },
+        { "name": "Hawaii", "abbreviation": "HI" },
+        { "name": "Idaho", "abbreviation": "ID" },
+        { "name": "Illinois", "abbreviation": "IL" },
+        { "name": "Indiana", "abbreviation": "IN" },
+        { "name": "Iowa", "abbreviation": "IA" },
+        { "name": "Kansas", "abbreviation": "KS" },
+        { "name": "Kentucky", "abbreviation": "KY" },
+        { "name": "Louisiana", "abbreviation": "LA" },
+        { "name": "Maine", "abbreviation": "ME" },
+        { "name": "Marshall Islands", "abbreviation": "MH" },
+        { "name": "Maryland", "abbreviation": "MD" },
+        { "name": "Massachusetts", "abbreviation": "MA" },
+        { "name": "Michigan", "abbreviation": "MI" },
+        { "name": "Minnesota", "abbreviation": "MN" },
+        { "name": "Mississippi", "abbreviation": "MS" },
+        { "name": "Missouri", "abbreviation": "MO" },
+        { "name": "Montana", "abbreviation": "MT" },
+        { "name": "Nebraska", "abbreviation": "NE" },
+        { "name": "Nevada", "abbreviation": "NV" },
+        { "name": "New Hampshire", "abbreviation": "NH" },
+        { "name": "New Jersey", "abbreviation": "NJ" },
+        { "name": "New Mexico", "abbreviation": "NM" },
+        { "name": "New York", "abbreviation": "NY" },
+        { "name": "North Carolina", "abbreviation": "NC" },
+        { "name": "North Dakota", "abbreviation": "ND" },
+        { "name": "Northern Mariana Islands", "abbreviation": "MP" },
+        { "name": "Ohio", "abbreviation": "OH" },
+        { "name": "Oklahoma", "abbreviation": "OK" },
+        { "name": "Oregon", "abbreviation": "OR" },
+        { "name": "Palau", "abbreviation": "PW" },
+        { "name": "Pennsylvania", "abbreviation": "PA" },
+        { "name": "Puerto Rico", "abbreviation": "PR" },
+        { "name": "Rhode Island", "abbreviation": "RI" },
+        { "name": "South Carolina", "abbreviation": "SC" },
+        { "name": "South Dakota", "abbreviation": "SD" },
+        { "name": "Tennessee", "abbreviation": "TN" },
+        { "name": "Texas", "abbreviation": "TX" },
+        { "name": "Utah", "abbreviation": "UT" },
+        { "name": "Vermont", "abbreviation": "VT" },
+        { "name": "Virgin Islands", "abbreviation": "VI" },
+        { "name": "Virginia", "abbreviation": "VA" },
+        { "name": "Washington", "abbreviation": "WA" },
+        { "name": "West Virginia", "abbreviation": "WV" },
+        { "name": "Wisconsin", "abbreviation": "WI" },
+        { "name": "Wyoming", "abbreviation": "WY" }
+    ];
+
+    // Gestion de la validation et du formulaire via React Hook Form et Zod
     const {
         register, // Pour lier les champs du formulaire à la React Hook Form
         handleSubmit, // Pour déclencher la validation et l'envoi du formulaire
@@ -28,254 +95,10 @@ function MyForm() {
         resolver: zodResolver(schema), // Pour valider automatiquement les données soumises dans le formulaire
     });
 
-    const departments = ["Sales", "Marketing", "Engineering", "Human Resources", "Legal"];
-    const states = [
-        "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
-        "Connecticut", "Delaware", "Florida", "Georgia"
-    ];
-
-    // const states = [
-    //     {
-    //         "name": "Alabama",
-    //         "abbreviation": "AL"
-    //     },
-    //     {
-    //         "name": "Alaska",
-    //         "abbreviation": "AK"
-    //     },
-    //     {
-    //         "name": "American Samoa",
-    //         "abbreviation": "AS"
-    //     },
-    //     {
-    //         "name": "Arizona",
-    //         "abbreviation": "AZ"
-    //     },
-    //     {
-    //         "name": "Arkansas",
-    //         "abbreviation": "AR"
-    //     },
-    //     {
-    //         "name": "California",
-    //         "abbreviation": "CA"
-    //     },
-    //     {
-    //         "name": "Colorado",
-    //         "abbreviation": "CO"
-    //     },
-    //     {
-    //         "name": "Connecticut",
-    //         "abbreviation": "CT"
-    //     },
-    //     {
-    //         "name": "Delaware",
-    //         "abbreviation": "DE"
-    //     },
-    //     {
-    //         "name": "District Of Columbia",
-    //         "abbreviation": "DC"
-    //     },
-    //     {
-    //         "name": "Federated States Of Micronesia",
-    //         "abbreviation": "FM"
-    //     },
-    //     {
-    //         "name": "Florida",
-    //         "abbreviation": "FL"
-    //     },
-    //     {
-    //         "name": "Georgia",
-    //         "abbreviation": "GA"
-    //     },
-    //     {
-    //         "name": "Guam",
-    //         "abbreviation": "GU"
-    //     },
-    //     {
-    //         "name": "Hawaii",
-    //         "abbreviation": "HI"
-    //     },
-    //     {
-    //         "name": "Idaho",
-    //         "abbreviation": "ID"
-    //     },
-    //     {
-    //         "name": "Illinois",
-    //         "abbreviation": "IL"
-    //     },
-    //     {
-    //         "name": "Indiana",
-    //         "abbreviation": "IN"
-    //     },
-    //     {
-    //         "name": "Iowa",
-    //         "abbreviation": "IA"
-    //     },
-    //     {
-    //         "name": "Kansas",
-    //         "abbreviation": "KS"
-    //     },
-    //     {
-    //         "name": "Kentucky",
-    //         "abbreviation": "KY"
-    //     },
-    //     {
-    //         "name": "Louisiana",
-    //         "abbreviation": "LA"
-    //     },
-    //     {
-    //         "name": "Maine",
-    //         "abbreviation": "ME"
-    //     },
-    //     {
-    //         "name": "Marshall Islands",
-    //         "abbreviation": "MH"
-    //     },
-    //     {
-    //         "name": "Maryland",
-    //         "abbreviation": "MD"
-    //     },
-    //     {
-    //         "name": "Massachusetts",
-    //         "abbreviation": "MA"
-    //     },
-    //     {
-    //         "name": "Michigan",
-    //         "abbreviation": "MI"
-    //     },
-    //     {
-    //         "name": "Minnesota",
-    //         "abbreviation": "MN"
-    //     },
-    //     {
-    //         "name": "Mississippi",
-    //         "abbreviation": "MS"
-    //     },
-    //     {
-    //         "name": "Missouri",
-    //         "abbreviation": "MO"
-    //     },
-    //     {
-    //         "name": "Montana",
-    //         "abbreviation": "MT"
-    //     },
-    //     {
-    //         "name": "Nebraska",
-    //         "abbreviation": "NE"
-    //     },
-    //     {
-    //         "name": "Nevada",
-    //         "abbreviation": "NV"
-    //     },
-    //     {
-    //         "name": "New Hampshire",
-    //         "abbreviation": "NH"
-    //     },
-    //     {
-    //         "name": "New Jersey",
-    //         "abbreviation": "NJ"
-    //     },
-    //     {
-    //         "name": "New Mexico",
-    //         "abbreviation": "NM"
-    //     },
-    //     {
-    //         "name": "New York",
-    //         "abbreviation": "NY"
-    //     },
-    //     {
-    //         "name": "North Carolina",
-    //         "abbreviation": "NC"
-    //     },
-    //     {
-    //         "name": "North Dakota",
-    //         "abbreviation": "ND"
-    //     },
-    //     {
-    //         "name": "Northern Mariana Islands",
-    //         "abbreviation": "MP"
-    //     },
-    //     {
-    //         "name": "Ohio",
-    //         "abbreviation": "OH"
-    //     },
-    //     {
-    //         "name": "Oklahoma",
-    //         "abbreviation": "OK"
-    //     },
-    //     {
-    //         "name": "Oregon",
-    //         "abbreviation": "OR"
-    //     },
-    //     {
-    //         "name": "Palau",
-    //         "abbreviation": "PW"
-    //     },
-    //     {
-    //         "name": "Pennsylvania",
-    //         "abbreviation": "PA"
-    //     },
-    //     {
-    //         "name": "Puerto Rico",
-    //         "abbreviation": "PR"
-    //     },
-    //     {
-    //         "name": "Rhode Island",
-    //         "abbreviation": "RI"
-    //     },
-    //     {
-    //         "name": "South Carolina",
-    //         "abbreviation": "SC"
-    //     },
-    //     {
-    //         "name": "South Dakota",
-    //         "abbreviation": "SD"
-    //     },
-    //     {
-    //         "name": "Tennessee",
-    //         "abbreviation": "TN"
-    //     },
-    //     {
-    //         "name": "Texas",
-    //         "abbreviation": "TX"
-    //     },
-    //     {
-    //         "name": "Utah",
-    //         "abbreviation": "UT"
-    //     },
-    //     {
-    //         "name": "Vermont",
-    //         "abbreviation": "VT"
-    //     },
-    //     {
-    //         "name": "Virgin Islands",
-    //         "abbreviation": "VI"
-    //     },
-    //     {
-    //         "name": "Virginia",
-    //         "abbreviation": "VA"
-    //     },
-    //     {
-    //         "name": "Washington",
-    //         "abbreviation": "WA"
-    //     },
-    //     {
-    //         "name": "West Virginia",
-    //         "abbreviation": "WV"
-    //     },
-    //     {
-    //         "name": "Wisconsin",
-    //         "abbreviation": "WI"
-    //     },
-    //     {
-    //         "name": "Wyoming",
-    //         "abbreviation": "WY"
-    //     }
-    // ];
-
+    // Fonction déclenchée à la soumission du formulaire
     const onSubmit = (data) => {
-        dispatch(addEmployee(data)); // Envoie des données dans Redux
-        window.location.href = "/users"; // Redirection vers la liste d'employés
+        dispatch(addEmployee(data)); // Dispatcher les données de l'employé
+        console.log(data);
     };
 
     return (
@@ -283,58 +106,68 @@ function MyForm() {
             <a href="/users">View Current Employees</a>
             <h2>Create Employee</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <label>First Name</label>
-                <input {...register("firstName")} />
-                {errors.firstName && <span>{errors.firstName.message}</span>}
+                {/* Prénom */}
+                <label htmlFor="firstName">First Name</label>
+                <input id="firstName" {...register("firstName")} />
+                {errors.firstName && <p>{errors.firstName.message}</p>}
 
-                <label>Last Name</label>
-                <input {...register("lastName")} />
-                {errors.lastName && <span>{errors.lastName.message}</span>}
+                {/* Nom de famille */}
+                <label htmlFor="lastName">Last Name</label>
+                <input id="lastName" {...register("lastName")} />
+                {errors.lastName && <p>{errors.lastName.message}</p>}
 
-                <label>Date of Birth</label>
-                <input type="date" {...register("dateOfBirth")} />
-                {errors.dateOfBirth && <span>{errors.dateOfBirth.message}</span>}
+                {/* Date de naissance */}
+                <label htmlFor="dateOfBirth">Date of Birth</label>
+                <input type="date" id="dateOfBirth" {...register("dateOfBirth")} />
+                {errors.dateOfBirth && <p>{errors.dateOfBirth.message}</p>}
 
-                <label>Start Date</label>
-                <input type="date" {...register("startDate")} />
-                {errors.startDate && <span>{errors.startDate.message}</span>}
+                {/* Date de début */}
+                <label htmlFor="startDate">Start Date</label>
+                <input type="date" id="startDate" {...register("startDate")} />
+                {errors.startDate && <p>{errors.startDate.message}</p>}
 
-                <fieldset className="address">
-                    <legend>Address</legend>
+                {/* Adresse */}
+                <label htmlFor="street">Street</label>
+                <input id="street" {...register("street")} />
+                {errors.street && <p>{errors.street.message}</p>}
 
-                    <label>Street</label>
-                    <input {...register("street")} />
-                    {errors.street && <span>{errors.street.message}</span>}
+                {/* Ville */}
+                <label htmlFor="city">City</label>
+                <input id="city" {...register("city")} />
+                {errors.city && <p>{errors.city.message}</p>}
 
-                    <label>City</label>
-                    <input {...register("city")} />
-                    {errors.city && <span>{errors.city.message}</span>}
-
-                    <label>State</label>
-                    <select {...register("state")} id="state">
-                        {states.map((state, index) => (
-                            <option key={index} value={state}>{state}</option>
-                        ))}
-                    </select>
-                    {errors.state && <span>{errors.state.message}</span>}
-
-                    <label>Zip Code</label>
-                    <input type="number" {...register("zipCode")} />
-                    {errors.zipCode && <span>{errors.zipCode.message}</span>}
-                </fieldset>
-
-                <label>Department</label>
-                <select {...register("department")} id="department">
-                    {departments.map((department, index) => (
-                        <option key={index} value={department}>{department}</option>
+                {/* État */}
+                <label htmlFor="state">State</label>
+                <select id="state" {...register("state")}>
+                    {states.map((state) => (
+                        <option key={state.abbreviation} value={state.abbreviation}>
+                            {state.name}
+                        </option>
                     ))}
                 </select>
-                {errors.department && <span>{errors.department.message}</span>}
+                {errors.state && <p>{errors.state.message}</p>}
 
-                <button type="submit">Save</button>
+                {/* Code postal */}
+                <label htmlFor="zipCode">Zip Code</label>
+                <input id="zipCode" {...register("zipCode")} />
+                {errors.zipCode && <p>{errors.zipCode.message}</p>}
+
+                {/* Département */}
+                <label htmlFor="department">Department</label>
+                <select id="department" {...register("department")}>
+                    {departments.map((department) => (
+                        <option key={department} value={department}>
+                            {department}
+                        </option>
+                    ))}
+                </select>
+                {errors.department && <p>{errors.department.message}</p>}
+
+                {/* Soumission du formulaire */}
+                <button type="submit">Submit</button>
             </form>
         </div>
     );
-}
+};
 
 export default MyForm;
