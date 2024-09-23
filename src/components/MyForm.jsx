@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useDispatch } from 'react-redux';
+import { addEmployee } from '../redux/employeesSlice';
 
 // Schéma de validation avec Zod
 const schema = z.object({
@@ -16,6 +18,8 @@ const schema = z.object({
 });
 
 function MyForm() {
+    const dispatch = useDispatch(); // Pour dispatcher une action Redux
+
     const {
         register, // Pour lier les champs du formulaire à la React Hook Form
         handleSubmit, // Pour déclencher la validation et l'envoi du formulaire
@@ -24,23 +28,257 @@ function MyForm() {
         resolver: zodResolver(schema), // Pour valider automatiquement les données soumises dans le formulaire
     });
 
-    // Options pour les départements et les états déclarés directement dans le composant
     const departments = ["Sales", "Marketing", "Engineering", "Human Resources", "Legal"];
     const states = [
         "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
-        "Connecticut", "Delaware", "Florida", "Georgia" // etc...
+        "Connecticut", "Delaware", "Florida", "Georgia"
     ];
 
+    // const states = [
+    //     {
+    //         "name": "Alabama",
+    //         "abbreviation": "AL"
+    //     },
+    //     {
+    //         "name": "Alaska",
+    //         "abbreviation": "AK"
+    //     },
+    //     {
+    //         "name": "American Samoa",
+    //         "abbreviation": "AS"
+    //     },
+    //     {
+    //         "name": "Arizona",
+    //         "abbreviation": "AZ"
+    //     },
+    //     {
+    //         "name": "Arkansas",
+    //         "abbreviation": "AR"
+    //     },
+    //     {
+    //         "name": "California",
+    //         "abbreviation": "CA"
+    //     },
+    //     {
+    //         "name": "Colorado",
+    //         "abbreviation": "CO"
+    //     },
+    //     {
+    //         "name": "Connecticut",
+    //         "abbreviation": "CT"
+    //     },
+    //     {
+    //         "name": "Delaware",
+    //         "abbreviation": "DE"
+    //     },
+    //     {
+    //         "name": "District Of Columbia",
+    //         "abbreviation": "DC"
+    //     },
+    //     {
+    //         "name": "Federated States Of Micronesia",
+    //         "abbreviation": "FM"
+    //     },
+    //     {
+    //         "name": "Florida",
+    //         "abbreviation": "FL"
+    //     },
+    //     {
+    //         "name": "Georgia",
+    //         "abbreviation": "GA"
+    //     },
+    //     {
+    //         "name": "Guam",
+    //         "abbreviation": "GU"
+    //     },
+    //     {
+    //         "name": "Hawaii",
+    //         "abbreviation": "HI"
+    //     },
+    //     {
+    //         "name": "Idaho",
+    //         "abbreviation": "ID"
+    //     },
+    //     {
+    //         "name": "Illinois",
+    //         "abbreviation": "IL"
+    //     },
+    //     {
+    //         "name": "Indiana",
+    //         "abbreviation": "IN"
+    //     },
+    //     {
+    //         "name": "Iowa",
+    //         "abbreviation": "IA"
+    //     },
+    //     {
+    //         "name": "Kansas",
+    //         "abbreviation": "KS"
+    //     },
+    //     {
+    //         "name": "Kentucky",
+    //         "abbreviation": "KY"
+    //     },
+    //     {
+    //         "name": "Louisiana",
+    //         "abbreviation": "LA"
+    //     },
+    //     {
+    //         "name": "Maine",
+    //         "abbreviation": "ME"
+    //     },
+    //     {
+    //         "name": "Marshall Islands",
+    //         "abbreviation": "MH"
+    //     },
+    //     {
+    //         "name": "Maryland",
+    //         "abbreviation": "MD"
+    //     },
+    //     {
+    //         "name": "Massachusetts",
+    //         "abbreviation": "MA"
+    //     },
+    //     {
+    //         "name": "Michigan",
+    //         "abbreviation": "MI"
+    //     },
+    //     {
+    //         "name": "Minnesota",
+    //         "abbreviation": "MN"
+    //     },
+    //     {
+    //         "name": "Mississippi",
+    //         "abbreviation": "MS"
+    //     },
+    //     {
+    //         "name": "Missouri",
+    //         "abbreviation": "MO"
+    //     },
+    //     {
+    //         "name": "Montana",
+    //         "abbreviation": "MT"
+    //     },
+    //     {
+    //         "name": "Nebraska",
+    //         "abbreviation": "NE"
+    //     },
+    //     {
+    //         "name": "Nevada",
+    //         "abbreviation": "NV"
+    //     },
+    //     {
+    //         "name": "New Hampshire",
+    //         "abbreviation": "NH"
+    //     },
+    //     {
+    //         "name": "New Jersey",
+    //         "abbreviation": "NJ"
+    //     },
+    //     {
+    //         "name": "New Mexico",
+    //         "abbreviation": "NM"
+    //     },
+    //     {
+    //         "name": "New York",
+    //         "abbreviation": "NY"
+    //     },
+    //     {
+    //         "name": "North Carolina",
+    //         "abbreviation": "NC"
+    //     },
+    //     {
+    //         "name": "North Dakota",
+    //         "abbreviation": "ND"
+    //     },
+    //     {
+    //         "name": "Northern Mariana Islands",
+    //         "abbreviation": "MP"
+    //     },
+    //     {
+    //         "name": "Ohio",
+    //         "abbreviation": "OH"
+    //     },
+    //     {
+    //         "name": "Oklahoma",
+    //         "abbreviation": "OK"
+    //     },
+    //     {
+    //         "name": "Oregon",
+    //         "abbreviation": "OR"
+    //     },
+    //     {
+    //         "name": "Palau",
+    //         "abbreviation": "PW"
+    //     },
+    //     {
+    //         "name": "Pennsylvania",
+    //         "abbreviation": "PA"
+    //     },
+    //     {
+    //         "name": "Puerto Rico",
+    //         "abbreviation": "PR"
+    //     },
+    //     {
+    //         "name": "Rhode Island",
+    //         "abbreviation": "RI"
+    //     },
+    //     {
+    //         "name": "South Carolina",
+    //         "abbreviation": "SC"
+    //     },
+    //     {
+    //         "name": "South Dakota",
+    //         "abbreviation": "SD"
+    //     },
+    //     {
+    //         "name": "Tennessee",
+    //         "abbreviation": "TN"
+    //     },
+    //     {
+    //         "name": "Texas",
+    //         "abbreviation": "TX"
+    //     },
+    //     {
+    //         "name": "Utah",
+    //         "abbreviation": "UT"
+    //     },
+    //     {
+    //         "name": "Vermont",
+    //         "abbreviation": "VT"
+    //     },
+    //     {
+    //         "name": "Virgin Islands",
+    //         "abbreviation": "VI"
+    //     },
+    //     {
+    //         "name": "Virginia",
+    //         "abbreviation": "VA"
+    //     },
+    //     {
+    //         "name": "Washington",
+    //         "abbreviation": "WA"
+    //     },
+    //     {
+    //         "name": "West Virginia",
+    //         "abbreviation": "WV"
+    //     },
+    //     {
+    //         "name": "Wisconsin",
+    //         "abbreviation": "WI"
+    //     },
+    //     {
+    //         "name": "Wyoming",
+    //         "abbreviation": "WY"
+    //     }
+    // ];
+
     const onSubmit = (data) => {
-        let employees = JSON.parse(localStorage.getItem('employees')) || [];
-        employees.push(data);
-        localStorage.setItem('employees', JSON.stringify(employees));
-        // Pour rediriger vers la page EmployeeList après sauvegarde
-        window.location.href = "/users";
+        dispatch(addEmployee(data)); // Envoie des données dans Redux
+        window.location.href = "/users"; // Redirection vers la liste d'employés
     };
 
     return (
-
         <div className='container'>
             <a href="/users">View Current Employees</a>
             <h2>Create Employee</h2>
@@ -95,7 +333,7 @@ function MyForm() {
 
                 <button type="submit">Save</button>
             </form>
-        </div >
+        </div>
     );
 }
 
