@@ -1,14 +1,7 @@
-import { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
 
 function EmployeeList() {
-  const [employees, setEmployees] = useState([]);
-
-  useEffect(() => {
-    const storedEmployees = JSON.parse(localStorage.getItem("employees"));
-    if (storedEmployees) {
-      setEmployees(storedEmployees);
-    }
-  }, []);
+  const employees = useSelector((state) => state.employees.employees); // Sélectionne les employés depuis Redux
 
   return (
     <div className="container">
