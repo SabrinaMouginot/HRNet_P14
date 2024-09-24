@@ -3,6 +3,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch } from "react-redux";
 import { addEmployee } from "../redux/employeesSlice";
+import { useNavigate } from "react-router-dom"; 
+import { useState } from "react"; // Importer useState
 
 // Schéma de validation avec Zod
 const schema = z.object({
@@ -18,7 +20,9 @@ const schema = z.object({
 });
 
 function MyForm() {
-    const dispatch = useDispatch(); // Pour dispatcher une action Redux
+    const dispatch = useDispatch(); 
+    const navigate = useNavigate(); 
+    const [modalVisible, setModalVisible] = useState(false); // État pour contrôler la modale
 
     // Liste des départements
     const departments = ["Sales", "Marketing", "Engineering", "Human Resources", "Legal"];
@@ -86,19 +90,22 @@ function MyForm() {
         { "name": "Wyoming", "abbreviation": "WY" }
     ];
 
-    // Gestion de la validation et du formulaire via React Hook Form et Zod
     const {
-        register, // Pour lier les champs du formulaire à la React Hook Form
-        handleSubmit, // Pour déclencher la validation et l'envoi du formulaire
-        formState: { errors }, // Objet qui contient toutes les erreurs de validation, renvoyées par le schéma Zod si les champs ne respectent pas les contraintes
-    } = useForm({  // pour gérer les formulaires
-        resolver: zodResolver(schema), // Pour valider automatiquement les données soumises dans le formulaire
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        resolver: zodResolver(schema),
     });
 
-    // Fonction déclenchée à la soumission du formulaire
     const onSubmit = (data) => {
-        dispatch(addEmployee(data)); // Dispatcher les données de l'employé
-        console.log(data);
+        dispatch(addEmployee(data)); 
+        setModalVisible(true); // Afficher la modale après la soumission réussie
+    };
+
+    const closeModal = () => {
+        setModalVisible(false); // Fermer la modale
+        navigate("/users"); // Naviguer vers la liste des employés
     };
 
     return (
@@ -164,10 +171,21 @@ function MyForm() {
                 {errors.department && <p>{errors.department.message}</p>}
 
                 {/* Soumission du formulaire */}
-                <button type="submit">Submit</button>
+                <button type="submit">Créer Employé</button>
             </form>
+
+            {/* Modale de confirmation */}
+            {modalVisible && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={closeModal}>&times;</span>
+                        <h2>Employé créé avec succès !</h2>
+                        <p>Vous avez ajouté un nouvel employé à la liste.</p>
+                    </div>
+                </div>
+            )}
         </div>
     );
-};
+}
 
 export default MyForm;
