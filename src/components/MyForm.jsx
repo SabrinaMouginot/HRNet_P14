@@ -109,32 +109,32 @@ function MyForm() {
             {/* Prénom */}
             <label htmlFor="firstName">First Name</label>
             <input id="firstName" {...register("firstName")} />
-            {errors.firstName && <p>{errors.firstName.message}</p>}
+            {errors.firstName && <p className="error-message">{errors.firstName.message}</p>}
 
             {/* Nom de famille */}
             <label htmlFor="lastName">Last Name</label>
             <input id="lastName" {...register("lastName")} />
-            {errors.lastName && <p>{errors.lastName.message}</p>}
+            {errors.lastName && <p className="error-message">{errors.lastName.message}</p>}
 
             {/* Date de naissance */}
             <InputLabel id="dateOfBirthLabel">Date of Birth</InputLabel>
             <DatePicker labelId="dateOfBirthLabel" id="dateOfBirth" {...register("dateOfBirth")} />
-            {errors.dateOfBirth && <p>{errors.dateOfBirth.message}</p>}
+            {errors.dateOfBirth && <p className="error-message">{errors.dateOfBirth.message}</p>}
 
             {/* Date de début */}
             <InputLabel id="startDateLabel">Start Date</InputLabel>
             <DatePicker labelId="startDateLabel" id="startDate" {...register("startDate")} />
-            {errors.startDate && <p>{errors.startDate.message}</p>}
+            {errors.startDate && <p className="error-message">{errors.startDate.message}</p>}
 
             {/* Adresse */}
             <label htmlFor="street">Street</label>
             <input id="street" {...register("street")} />
-            {errors.street && <p>{errors.street.message}</p>}
+            {errors.street && <p className="error-message">{errors.street.message}</p>}
 
             {/* Ville */}
             <label htmlFor="city">City</label>
             <input id="city" {...register("city")} />
-            {errors.city && <p>{errors.city.message}</p>}
+            {errors.city && <p className="error-message">{errors.city.message}</p>}
 
             {/* État */}
             <InputLabel id="state-select">State</InputLabel>
@@ -149,12 +149,12 @@ function MyForm() {
                 ))}
             </Select>
 
-            {errors.state && <p>{errors.state.message}</p>}
+            {errors.state && <p className="error-message">{errors.state.message}</p>}
 
             {/* Code postal */}
             <label htmlFor="zipCode">Zip Code</label>
             <input id="zipCode" {...register("zipCode")} />
-            {errors.zipCode && <p>{errors.zipCode.message}</p>}
+            {errors.zipCode && <p className="error-message">{errors.zipCode.message}</p>}
 
             {/* Département */}
             <InputLabel id="department-select">Department</InputLabel>
@@ -169,10 +169,10 @@ function MyForm() {
                 ))}
             </Select>
 
-            {errors.department && <p>{errors.department.message}</p>}
+            {errors.department && <p className="error-message">{errors.department.message}</p>}
 
             {/* Soumission du formulaire */}
-            <button type="submit">Créer Employé</button>
+            <button type="submit">Create Employee</button>
         </form>
     );
 }
