@@ -91,16 +91,16 @@ function MyForm() {
     ];
 
     const {
-        register,
-        handleSubmit,
-        formState: { errors },
+        register, // Fonction pour enregistrer les champs du formulaire et les lier à la gestion des valeurs et de la validation
+        handleSubmit, // Fonction pour gérer la soumission du formulaire et la validation. Appelle une fonction en cas de succès ou d'échec.
+        formState: { errors }, // Objet contenant l'état actuel du formulaire, on extrait 'errors' qui contient les erreurs de validation.
     } = useForm({
-        resolver: zodResolver(schema),
+        resolver: zodResolver(schema), // Utilise zodResolver pour lier le schéma Zod au formulaire. Le schéma définit les règles de validation pour chaque champ.
     });
 
     const onSubmit = (data) => {
-        dispatch(addEmployee(data));
-        setModalVisible(true); // Afficher la modale après la soumission réussie
+        dispatch(addEmployee(data)); // Envoie les données du formulaire à l'action 'addEmployee' via Redux pour ajouter un nouvel employé
+        setModalVisible(true); // Affiche la modale après la soumission réussie
     };
 
     const closeModal = () => {
@@ -125,7 +125,11 @@ function MyForm() {
 
                 {/* Date de naissance */}
                 <label htmlFor="dateOfBirth">Date of Birth</label>
-                <input type="date" id="dateOfBirth" {...register("dateOfBirth")} />
+                <input
+                    type="date" // Spécifie que ce champ est un sélecteur de date
+                    id="dateOfBirth" // Attribue un ID unique au champ, utile pour les labels et les tests
+                    {...register("dateOfBirth")} // Utilise la fonction 'register' pour lier le champ 'dateOfBirth' avec le système de gestion du formulaire (permet de récupérer sa valeur et de gérer la validation)
+                />
                 {errors.dateOfBirth && <p>{errors.dateOfBirth.message}</p>}
 
                 {/* Date de début */}
