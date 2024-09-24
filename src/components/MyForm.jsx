@@ -3,7 +3,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch } from "react-redux";
 import { addEmployee } from "../redux/employeesSlice";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import { useState } from "react"; // Importer useState
 
 // Schéma de validation avec Zod
@@ -20,8 +20,8 @@ const schema = z.object({
 });
 
 function MyForm() {
-    const dispatch = useDispatch(); 
-    const navigate = useNavigate(); 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [modalVisible, setModalVisible] = useState(false); // État pour contrôler la modale
 
     // Liste des départements
@@ -99,7 +99,7 @@ function MyForm() {
     });
 
     const onSubmit = (data) => {
-        dispatch(addEmployee(data)); 
+        dispatch(addEmployee(data));
         setModalVisible(true); // Afficher la modale après la soumission réussie
     };
 
