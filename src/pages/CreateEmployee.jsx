@@ -1,21 +1,17 @@
 import MyForm from "../components/MyForm";
 import { useDispatch, useSelector } from 'react-redux';
-import { openModal, closeModal } from '../redux/modalSlice';
+import { toggleModal } from '../redux/modalSlice';
 import Modal from '@mui/material/Modal';
 import { Button, Box, Typography } from '@mui/material'; // Import MUI components
 import '../app.css';
+import { Link } from "react-router-dom";
 
 function CreateEmployee() {
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.modal.isOpen); // Récupérer l'état d'ouverture de la modale
 
-  // Fonction pour gérer l'ouverture de la modale après la soumission du formulaire
-  const handleSubmitForm = () => {
-    dispatch(openModal());
-  };
-
   const handleClose = () => {
-    dispatch(closeModal());
+    dispatch(toggleModal());
   };
 
   return (
@@ -23,10 +19,13 @@ function CreateEmployee() {
       <div className="title">
         <h1>HRnet</h1>
       </div>
+      <div className='container'>
+        <Link to="/users">View Current Employees</Link>
+        <h2>Create Employee</h2>
 
-      {/* Moon formulaire */}
-      <MyForm onSubmit={handleSubmitForm} />
-
+        {/* Moon formulaire */}
+        <MyForm />
+      </div>
       {/* Modale */}
       <Modal open={isOpen} onClose={handleClose}>
         <Box
