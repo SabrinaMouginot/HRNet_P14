@@ -1,25 +1,13 @@
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch } from "react-redux";
 import { addEmployee } from "../redux/employeesSlice";
 import { InputLabel, MenuItem, Select } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { toggleModal } from '../redux/modalSlice';
 
-
-// Schéma de validation avec Zod
-const schema = z.object({
-    firstName: z.string().min(1, { message: "First Name is required" }),
-    lastName: z.string().min(1, { message: "Last Name is required" }),
-    dateOfBirth: z.string().min(1, { message: "Date of Birth is required" }),
-    startDate: z.string().min(1, { message: "Start Date is required" }),
-    street: z.string().min(1, { message: "Street is required" }),
-    city: z.string().min(1, { message: "City is required" }),
-    state: z.string().min(1, { message: "State is required" }),
-    zipCode: z.string().min(5, { message: "Zip Code must be at least 5 digits" }),
-    department: z.string().min(1, { message: "Department is required" }),
-});
+// Schéma de validation personnalisé (sans Zod)
+const validateZipCode = (value) => value.length === 5 || "Zip Code must be 5 digits";
+const validateRequired = (value) => value.trim() !== "" || "This field is required";
 
 function MyForm() {
     const dispatch = useDispatch();
@@ -91,56 +79,74 @@ function MyForm() {
     ];
 
     const {
-        register, // Fonction pour enregistrer les champs du formulaire et les lier à la gestion des valeurs et de la validation
-        handleSubmit, // Fonction pour gérer la soumission du formulaire et la validation. Appelle une fonction en cas de succès ou d'échec.
-        formState: { errors }, // Objet contenant l'état actuel du formulaire, on extrait 'errors' qui contient les erreurs de validation.
-    } = useForm({
-        resolver: zodResolver(schema), // Utilise zodResolver pour lier le schéma Zod au formulaire. Le schéma définit les règles de validation pour chaque champ.
-    });
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
     const onSubmit = (data) => {
-        dispatch(addEmployee(data)); // Envoie les données du formulaire à l'action 'addEmployee' via Redux pour ajouter un nouvel employé
+        dispatch(addEmployee(data));
         dispatch(toggleModal());
     };
 
     return (
-
         <form onSubmit={handleSubmit(onSubmit)}>
             {/* Prénom */}
             <label htmlFor="firstName">First Name</label>
-            <input id="firstName" {...register("firstName")} />
+            <input
+                id="firstName"
+                {...register("firstName", { validate: validateRequired })}
+            />
             {errors.firstName && <p className="error-message">{errors.firstName.message}</p>}
 
             {/* Nom de famille */}
             <label htmlFor="lastName">Last Name</label>
-            <input id="lastName" {...register("lastName")} />
+            <input
+                id="lastName"
+                {...register("lastName", { validate: validateRequired })}
+            />
             {errors.lastName && <p className="error-message">{errors.lastName.message}</p>}
 
             {/* Date de naissance */}
             <InputLabel id="dateOfBirthLabel">Date of Birth</InputLabel>
-            <DatePicker labelId="dateOfBirthLabel" id="dateOfBirth" {...register("dateOfBirth")} />
+            <DatePicker
+                labelId="dateOfBirthLabel"
+                id="dateOfBirth"
+                renderInput={(params) => <input {...params} {...register("dateOfBirth", { validate: validateRequired })} />}
+            />
             {errors.dateOfBirth && <p className="error-message">{errors.dateOfBirth.message}</p>}
 
             {/* Date de début */}
             <InputLabel id="startDateLabel">Start Date</InputLabel>
-            <DatePicker labelId="startDateLabel" id="startDate" {...register("startDate")} />
+            <DatePicker
+                labelId="startDateLabel"
+                id="startDate"
+                renderInput={(params) => <input {...params} {...register("startDate", { validate: validateRequired })} />}
+            />
             {errors.startDate && <p className="error-message">{errors.startDate.message}</p>}
 
             {/* Adresse */}
             <label htmlFor="street">Street</label>
-            <input id="street" {...register("street")} />
+            <input
+                id="street"
+                {...register("street", { validate: validateRequired })}
+            />
             {errors.street && <p className="error-message">{errors.street.message}</p>}
 
             {/* Ville */}
             <label htmlFor="city">City</label>
-            <input id="city" {...register("city")} />
+            <input
+                id="city"
+                {...register("city", { validate: validateRequired })}
+            />
             {errors.city && <p className="error-message">{errors.city.message}</p>}
 
             {/* État */}
             <InputLabel id="state-select">State</InputLabel>
             <Select
                 labelId="state-select"
-                id="state" {...register("state")}
+                id="state"
+                {...register("state", { validate: validateRequired })}
             >
                 {states.map((state) => (
                     <MenuItem key={state.abbreviation} value={state.abbreviation}>
@@ -148,19 +154,22 @@ function MyForm() {
                     </MenuItem>
                 ))}
             </Select>
-
             {errors.state && <p className="error-message">{errors.state.message}</p>}
 
             {/* Code postal */}
             <label htmlFor="zipCode">Zip Code</label>
-            <input id="zipCode" {...register("zipCode")} />
+            <input
+                id="zipCode"
+                {...register("zipCode", { validate: validateZipCode })}
+            />
             {errors.zipCode && <p className="error-message">{errors.zipCode.message}</p>}
 
             {/* Département */}
             <InputLabel id="department-select">Department</InputLabel>
             <Select
                 labelId="department-select"
-                id="department" {...register("department")}
+                id="department"
+                {...register("department", { validate: validateRequired })}
             >
                 {departments.map((department) => (
                     <MenuItem key={department} value={department}>
@@ -168,7 +177,6 @@ function MyForm() {
                     </MenuItem>
                 ))}
             </Select>
-
             {errors.department && <p className="error-message">{errors.department.message}</p>}
 
             {/* Soumission du formulaire */}
