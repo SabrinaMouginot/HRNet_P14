@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function EmployeeList() {
   const employees = useSelector((state) => state.employees.employees); // Sélectionne les employés depuis Redux
@@ -40,7 +41,7 @@ function EmployeeList() {
           </tbody>
         </table>
       )}
-      <a href="/">Home</a>
+      <Link to="/">Home</Link>
     </div>
   );
 }
