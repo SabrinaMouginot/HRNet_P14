@@ -1,4 +1,4 @@
-.title {
+/* .title {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,11 +49,10 @@ label {
     right: 15px;
     cursor: pointer;
     font-size: 20px;
-}
+} */
 
-/* *********** */
 /* Appliquer un background avec un dégradé sur toutes les pages */
-body {
+/* body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
@@ -61,10 +60,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 /* Style général du conteneur */
-.container {
+/* .container {
 
   border-radius: 15px;
   padding: 20px;
@@ -73,15 +72,108 @@ body {
   width: 90%;
   color: #333;
   margin-bottom: 20px;
+} */
+
+/* Style pour les titres */
+/* h1, h2 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  margin-bottom: 20px;
+} */
+
+/* Style des liens */
+/* a {
+  display: inline-block;
+  margin-top: 20px;
+  color: #66a6ff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
+a:hover {
+  color: #89f7fe;
+} */
+
+/* Style des tables */
+/* table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #66a6ff;
+  color: white;
+}
+
+td {
+  background-color: rgba(255, 255, 255, 0.8);
+} */
+
+/* Style des boutons */
+/* button, input[type="submit"] {
+  background-color: #66a6ff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button {
+  display: flex;
+  margin-top: 10px;
+}
+
+button:hover, input[type="submit"]:hover {
+  background-color: #89f7fe;
+} */
+
+/* *********** */
+/* Styles généraux */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #89f7fe, #66a6ff);
+}
+
+/* *********** */
+/* Style général du conteneur */
+.container {
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  width: 90%;
+  color: #333;
+  background-color: white;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* *********** */
 /* Style pour les titres */
 h1, h2 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   text-align: center;
   margin-bottom: 20px;
+  color: #333;
 }
 
+/* *********** */
 /* Style des liens */
 a {
   display: inline-block;
@@ -96,6 +188,7 @@ a:hover {
   color: #89f7fe;
 }
 
+/* *********** */
 /* Style des tables */
 table {
   width: 100%;
@@ -118,6 +211,7 @@ td {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+/* *********** */
 /* Style des boutons */
 button, input[type="submit"] {
   background-color: #66a6ff;
@@ -129,11 +223,63 @@ button, input[type="submit"] {
   transition: background-color 0.3s ease;
 }
 
-button {
-  display: flex;
-  margin-top: 10px;
+.button {
+  margin-Top: 20px
 }
 
 button:hover, input[type="submit"]:hover {
   background-color: #89f7fe;
+}
+
+/* *********** */
+/* Style pour les labels */
+label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* *********** */
+/* Style pour l'adresse (pour des marges spécifiques) */
+.address {
+  margin-top: 10px;
+}
+
+/* *********** */
+/* Style pour les erreurs de formulaire */
+.error {
+  color: red;
+  font-size: 0.9em;
+}
+
+/* *********** */
+/* Styles pour la modale */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 20px;
 }

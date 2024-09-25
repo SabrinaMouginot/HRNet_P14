@@ -167,9 +167,11 @@ function CreateEmployee() {
             {errors.zipCode && <p className="error">{errors.zipCode}</p>}
           </div>
 
-          <Button type="submit" variant="contained" color="primary">
-            Create Employee
-          </Button>
+          <div className='button'>
+            <Button type="submit" variant="contained" color="primary">
+              Create Employee
+            </Button>
+          </div>
         </form>
       </div>
 
