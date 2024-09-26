@@ -180,7 +180,9 @@ function MyForm() {
             {errors.department && <p className="error-message">{errors.department.message}</p>}
 
             {/* Soumission du formulaire */}
-            <button type="submit">Create Employee</button>
+            <div className="button">
+                <button type="submit">Create Employee</button>
+            </div>
         </form>
     );
 }
