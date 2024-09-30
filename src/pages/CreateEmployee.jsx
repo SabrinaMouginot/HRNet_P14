@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleModal } from '../redux/modalSlice';
-import Modal from '@mui/material/Modal';
-import { Button, Box, Typography } from '@mui/material';
+// import Modal from '@mui/material/Modal';
+// import { Button, Box, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
 import '../app.css';
 import MyForm from '../components/MyForm';
+import {Modal} from 'react-modal-sabrinamouginot'
 
 function CreateEmployee() {
   const dispatch = useDispatch();
@@ -25,8 +26,11 @@ function CreateEmployee() {
         <MyForm />
       </div>
 
+      <Modal isOpen={isOpen} onClose={handleClose}>
+        <h2>This is the modal content!</h2>
+      </Modal>
       {/* Modal */}
-      <Modal open={isOpen} onClose={handleClose}>
+      {/* <Modal open={isOpen} onClose={handleClose}>
         <Box
           sx={{
             position: 'absolute',
@@ -46,7 +50,7 @@ function CreateEmployee() {
             Fermer
           </Button>
         </Box>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }
