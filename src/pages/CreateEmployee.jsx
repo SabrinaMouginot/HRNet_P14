@@ -5,7 +5,7 @@ import { toggleModal } from '../redux/modalSlice';
 import { Link } from "react-router-dom";
 import '../app.css';
 import MyForm from '../components/MyForm';
-import {Modal} from 'react-modal-sabrinamouginot'
+import { Modal } from 'react-modal-sabrinamouginot'
 
 function CreateEmployee() {
   const dispatch = useDispatch();
@@ -27,8 +27,9 @@ function CreateEmployee() {
       </div>
 
       <Modal isOpen={isOpen} onClose={handleClose}>
-        <h2>This is the modal content!</h2>
+        <h2>Employee created successfully!</h2>
       </Modal>
+
       {/* Modal */}
       {/* <Modal open={isOpen} onClose={handleClose}>
         <Box

@@ -107,7 +107,7 @@ button[type="submit"]:hover {
 
 /* *********** */
 /* Style pour la boîte de dialogue modal */
-.MuiModal-root .MuiBox-root {
+/* .MuiModal-root .MuiBox-root {
   border-radius: 8px;
   padding: 20px;
 }
@@ -125,4 +125,4 @@ button[type="submit"]:hover {
 
 .MuiButton-root:hover {
   background-color: #89f7fe;
-}
+} */
