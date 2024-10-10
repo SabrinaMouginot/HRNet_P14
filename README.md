@@ -33,7 +33,7 @@ React Router (Navigation)
 To get a local copy up and running, follow these simple steps.
 
 Prerequisites
-Make sure you have npm installed on your machine. If not, you can install it here.
+Make sure you have npm installed on your machine. If not, you can install it [here](https://docs.npmjs.com/getting-started).
 
 ### Installation
 
