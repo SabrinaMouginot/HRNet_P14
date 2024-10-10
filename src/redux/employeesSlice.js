@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  employees: [],
+  employees: JSON.parse(localStorage.getItem('employees')) || [] 
+  // On récupère les employés du localStorage ou on initialise avec un tableau vide
 };
 
 const employeesSlice = createSlice({
@@ -10,6 +11,8 @@ const employeesSlice = createSlice({
   reducers: {
     addEmployee: (state, action) => {
       state.employees.push(action.payload);
+      // On met à jour le localStorage après chaque ajout
+      localStorage.setItem('employees', JSON.stringify(state.employees));
     },
   },
 });
