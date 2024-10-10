@@ -76,6 +76,9 @@ Navigate to the "Employee List" page to view, sort, and filter existing employee
 ## Roadmap
 
  Creation of the employee form
+
  Integration of Redux for state management
+
  Addition of a modal to confirm employee creation
+
  Performance improvements with Lighthouse
