@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
+  // employees: [] 
   employees: JSON.parse(localStorage.getItem('employees')) || [] 
   // On récupère les employés du localStorage ou on initialise avec un tableau vide
 };
