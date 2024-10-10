@@ -4,60 +4,60 @@
 
 ## About The Project
 
-HRNet est une application web interne pour gérer les employés d'une entreprise. Développée avec React, elle permet de créer et de visualiser des fiches d'employés, tout en offrant des fonctionnalités avancées de filtrage et de tri pour une gestion simplifiée.
+HRNet is an internal web application for managing company employees. Built with React, it allows the creation and viewing of employee records, with advanced filtering and sorting options for simplified management.
 
-Fonctionnalités clés :
+Key Features:
 
-Création de nouvelles fiches d'employés via un formulaire complet.
-Consultation de la liste des employés.
-Filtrage et tri des employés par différents critères (nom, département, etc.).
-Utilisation d'une modale customisée pour la confirmation des actions (création d'employés).
-Interface utilisateur moderne et responsive avec Material UI (MUI).
-Voici pourquoi ce projet a été réalisé :
+Create new employee records via a complete form.
+View the employee list.
+Filter and sort employees by various criteria (name, department, etc.).
+Custom modal for action confirmations (employee creation).
+Modern and responsive user interface with Material UI (MUI).
+Here’s why this project was built:
 
-Faciliter la gestion des employés en un seul endroit.
-Fournir une interface utilisateur fluide et réactive.
+Simplify employee management in one place.
+Provide a smooth and responsive user interface.
 
 ## Built With
 
-Cette application a été construite avec les technologies suivantes :
+This application was built using the following technologies:
 
 React
-Redux (Gestion de l'état)
-Material UI (Framework de composants UI)
-npm (Gestionnaire de paquets)
-React Router (Gestion de la navigation)
+Redux (State management)
+Material UI (UI component framework)
+npm (Package manager)
+React Router (Navigation)
 
 ## Getting Started
 
-Pour obtenir une copie locale du projet et le lancer, suivez ces étapes simples.
+To get a local copy up and running, follow these simple steps.
 
-Prérequis
-Assurez-vous d'avoir npm installé sur votre machine. Si ce n'est pas le cas, vous pouvez l'installer ici.
+Prerequisites
+Make sure you have npm installed on your machine. If not, you can install it here.
 
 ### Installation
 
-Clonez le repository :
+Clone the repository:
 
 ```bash
 git clone https://github.com/votre-repo/hrnet.git
 ```
 
-Allez dans le dossier du projet :
+Navigate to the project directory:
 
 ```bash
 
 cd hrnet
 ```
 
-Installez les dépendances npm :
+Install npm dependencies:
 
 ```bash
 
 npm install
 ```
 
-Lancez l'application :
+Start the application:
 
 ```bash
 
@@ -66,16 +66,16 @@ npm start
 
 ## Usage
 
-Pour utiliser l'application, suivez les instructions ci-dessous :
+To use the application, follow these instructions:
 
-Accédez à la page de création d'un nouvel employé.
-Remplissez le formulaire avec les informations de l'employé.
-Soumettez le formulaire pour ajouter l'employé à la liste.
-Allez sur la page "Employee List" pour voir, trier et filtrer les employés existants.
+Go to the "Create Employee" page.
+Fill out the form with the employee’s information.
+Submit the form to add the employee to the list.
+Navigate to the "Employee List" page to view, sort, and filter existing employees.
 
 ## Roadmap
 
- Création du formulaire d'ajout d'employés
- Intégration de Redux pour la gestion de l'état
- Ajout de la modale pour confirmer l'ajout des employés
- Amélioration des performances avec Lighthouse
+ Creation of the employee form
+ Integration of Redux for state management
+ Addition of a modal to confirm employee creation
+ Performance improvements with Lighthouse
