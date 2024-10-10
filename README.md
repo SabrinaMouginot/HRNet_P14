@@ -1,4 +1,3 @@
-# React + Vite
 # HRNet
 
 ## About The Project
@@ -34,7 +33,8 @@ Pour obtenir une copie locale du projet et le lancer, suivez ces étapes simples
 Prérequis
 Assurez-vous d'avoir npm installé sur votre machine. Si ce n'est pas le cas, vous pouvez l'installer ici.
 
-Installation
+### Installation
+
 Clonez le repository :
 
 ```bash
