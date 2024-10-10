@@ -1,5 +1,7 @@
 # HRNet
 
+![HRNet Screenshot](./public/HRNet_Img.png)
+
 ## About The Project
 
 HRNet est une application web interne pour gérer les employés d'une entreprise. Développée avec React, elle permet de créer et de visualiser des fiches d'employés, tout en offrant des fonctionnalités avancées de filtrage et de tri pour une gestion simplifiée.
