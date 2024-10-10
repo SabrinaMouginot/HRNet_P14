@@ -96,6 +96,7 @@ function MyForm() {
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+
       {/* Prénom */}
       <label htmlFor="firstName">First Name</label>
       <input
@@ -105,6 +106,7 @@ function MyForm() {
       {errors.firstName && (
         <p className="error-message">{errors.firstName.message}</p>
       )}
+
       {/* Nom de famille */}
       <label htmlFor="lastName">Last Name</label>
       <input
@@ -114,6 +116,7 @@ function MyForm() {
       {errors.lastName && (
         <p className="error-message">{errors.lastName.message}</p>
       )}
+
       {/* Date de naissance */}
       <InputLabel id="DateOfBirthLabel">Date of Birth</InputLabel>
       <Controller
@@ -137,6 +140,7 @@ function MyForm() {
       {errors.dateOfBirth && (
         <p className="error-message">{errors.dateOfBirth.message}</p>
       )}
+
       {/* Date de début */}
       <InputLabel id="startDateLabel">Start Date</InputLabel>
       <Controller
@@ -160,6 +164,7 @@ function MyForm() {
       {errors.startDate && (
         <p className="error-message">{errors.startDate.message}</p>
       )}
+
       {/* Adresse */}
       <label htmlFor="street">Street</label>
       <input
@@ -169,17 +174,20 @@ function MyForm() {
       {errors.street && (
         <p className="error-message">{errors.street.message}</p>
       )}
+
       {/* Ville */}
       <label htmlFor="city">City</label>
       <input id="city" {...register("city", { validate: validateRequired })} />
       {errors.city && <p className="error-message">{errors.city.message}</p>}
+
       {/* État */}
-      <InputLabel id="state-select">State</InputLabel>
+      <InputLabel id="state-select-label">State</InputLabel>
       <Select
-        labelId="state-select"
+        labelId="state-select-label"  // Associe correctement le label au Select
         id="state"
         defaultValue={"AL"}
         {...register("state", { validate: validateRequired })}
+        inputProps={{ 'aria-labelledby': 'state-select-label' }}  // Amélioration de l'accessibilité
       >
         {states.map((state) => (
           <MenuItem key={state.abbreviation} value={state.abbreviation}>
@@ -188,6 +196,8 @@ function MyForm() {
         ))}
       </Select>
       {errors.state && <p className="error-message">{errors.state.message}</p>}
+
+
       {/* Code postal */}
       <label htmlFor="zipCode">Zip Code</label>
       <input
@@ -197,13 +207,15 @@ function MyForm() {
       {errors.zipCode && (
         <p className="error-message">{errors.zipCode.message}</p>
       )}
+
       {/* Département */}
-      <InputLabel id="department-select">Department</InputLabel>
+      <InputLabel id="department-select-label">Department</InputLabel>
       <Select
-        labelId="department-select"
+        labelId="department-select-label"
         id="department"
         defaultValue={"Sales"}
         {...register("department", { validate: validateRequired })}
+        inputProps={{ 'aria-labelledby': 'department-select-label' }}  // Associe correctement le label pour l'accessibilité
       >
         {departments.map((department) => (
           <MenuItem key={department} value={department}>
@@ -214,6 +226,7 @@ function MyForm() {
       {errors.department && (
         <p className="error-message">{errors.department.message}</p>
       )}
+
       {/* Soumission du formulaire */}
       <div className="button">
         <button type="submit">Create Employee</button>

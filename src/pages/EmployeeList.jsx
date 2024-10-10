@@ -51,7 +51,6 @@ function EmployeeList() {
   return (
     <div className="container">
       <h1>Current Employees</h1>
-
       {/* Champ de recherche */}
       {employees.length > 0 && (
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', mb: 2 }}>
@@ -63,9 +62,11 @@ function EmployeeList() {
             size="small"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)} // Met à jour la valeur de recherche
+            inputProps={{ 'aria-label': 'Search' }}  // Ajoute une description pour l'accessibilité
           />
         </Box>
       )}
+
       {employees.length === 0 ? (
         <p>No employees found</p>
       ) : (
